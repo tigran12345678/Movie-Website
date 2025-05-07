@@ -1,0 +1,14 @@
+.Movies{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.Movie{
+  display: flex;
+  flex-flow: column;
+}
+
+.App{
+  display: flex;
+  flex-flow: column;
+}
