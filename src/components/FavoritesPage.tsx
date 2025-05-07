@@ -1,16 +1,24 @@
-import { useState, useEffect } from "react";
+
 
 
 
 function FavoritesPage(){
 
-    const movies = localStorage.getItem("favorites");
-
-     console.log(movies);
+    const raw = localStorage.getItem("favorites");
+    const movies =  JSON.parse(raw);
+    console.log(typeof movies);
 
     return(
-        <h1>yolo</h1>
-        
+        <div>
+        {movies.map((movie) => (
+            <div>
+                   <img src= {`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt="Movie Poster" />
+                   <p>{movie.original_title}</p>
+                   <p>{movie.release_date}</p>  
+                    
+            </div>
+        ))}
+        </div>
     );
 
 }

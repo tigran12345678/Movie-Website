@@ -1,4 +1,9 @@
 
+function validateEmail(email){
+    return email.includes("@gmail.com") ? "Valid Email" : "Non valid email"
+ }
+
+
 
 function Login() {
     return (

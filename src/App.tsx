@@ -11,8 +11,9 @@ export default function App() {
 
     <div className='App'>
     <h1>Movie website</h1>
-    <Movies></Movies>
-    <FavoritesPage></FavoritesPage>
+    <Login></Login>
+    {/* <Movies></Movies> */}
+  {/* <FavoritesPage></FavoritesPage> */}
     </div>
   );
 }
