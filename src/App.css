@@ -1,19 +1,35 @@
-.Movies{
-  display: flex;
-  flex-flow: row wrap;
-}
-
-.Movie{
-  display: flex;
-  flex-flow: column;
-}
-
 .App{
   display: flex;
   flex-flow: column;
 }
 
+.Movies{
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.Movie{
+  display: flex;
+  flex-flow: column;
+  width: 200px;
+  height: 200px;
+}
+
+
 .Favorites {
   display: flex;
   flex-flow: row;
+}
+
+.Head{
+  display: flex;
+  flex-flow: column;
+}
+
+.Navigation {
+  border: 1px solid;
+  display: flex;
+  flex-flow: row;
+  gap: 100px;
+  padding: 10px;
 }

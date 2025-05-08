@@ -11,7 +11,7 @@ function DrawFavoriteMovie({title, yearOfRelease, poster}){
             <img src={poster} alt="" />
             <p>{title}</p>
             <p>{yearOfRelease}</p>
-
+            <button>Remove from Favorites</button>
         </div>
     
     );
