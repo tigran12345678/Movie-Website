@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FavoritesPage from "../favoritesPage/FavoritesPage";
 import Movie from "./Movie";
 
 function Movies() {
@@ -17,8 +18,6 @@ function Movies() {
       alert("Movie Saved");
       localStorage.setItem("favorites", JSON.stringify(savedMovies));
     }
-   
-    
 
   }, [savedMovies])
 

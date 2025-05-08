@@ -1,20 +1,61 @@
 
 import Login from './components/Login';
-import HeaderNavigation from './components/HeaderNavigation';
-import Movies from './components/Movies';
-import FavoritesPage from './components/FavoritesPage';
+import Layout from './components/layout/HeaderNavigation';
+import Movies from './components/mainPage/Movies';
+import FavoritesPage from './components/favoritesPage/FavoritesPage';
 import './App.css';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import {  createBrowserRouter, RouterProvider, NavLink} from 'react-router';
 
-export default function App() {
+
+
+
+const LoginPage  = () => {
+      return(
+          <Login />
+      );
+}
+
+
+const MainPage = () => {
+    return (
+      <Movies />
+    )
+}
+
+const FavoriteMovies = () =>{
+    return (
+      <FavoritesPage />
+    )
+}
+
+const router = createBrowserRouter ([
+
+      {
+        path:"/", 
+        element: <Layout><LoginPage /></Layout>
+      },
+      {
+        path: "/mainPage", 
+        element: <Layout> <MainPage /></Layout> 
+      },
+      {  path: "/favoriteMovies", 
+        element: <Layout><FavoriteMovies /></Layout> 
+      }
+
+]);
+
+
+ function App() {
   return (
-
-    <div className='App'>
-    <h1>Movie website</h1>
-    <Login></Login>
-    {/* <Movies></Movies> */}
-  {/* <FavoritesPage></FavoritesPage> */}
-    </div>
+  
+    <>
+        
+        <RouterProvider router = {router} />
+    
+    </>
+  
   );
 }
 
+
+export default App

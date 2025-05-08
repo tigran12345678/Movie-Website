@@ -12,3 +12,8 @@
   display: flex;
   flex-flow: column;
 }
+
+.Favorites {
+  display: flex;
+  flex-flow: row;
+}
