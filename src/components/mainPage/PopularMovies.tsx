@@ -22,7 +22,7 @@ function PopularMovies(){
 
 
     return(
-        <div>
+        <div className="popularMovies">
 
         {popularMovies.map((popularMovie) => (
             <div>
@@ -40,7 +40,5 @@ function PopularMovies(){
     );
 
 }
-
-
 
 export default PopularMovies

@@ -2,16 +2,18 @@
 
 
 
-function DrawFavoriteMovie({title, yearOfRelease, poster}){
+
+function DrawFavoriteMovie({title, yearOfRelease, poster, id, deleteFunction}){
+
+
 
     return(
 
         <div className="FavoriteMovie">
-
             <img src={poster} alt="" />
             <p>{title}</p>
             <p>{yearOfRelease}</p>
-            <button>Remove from Favorites</button>
+            <button onClick = {() => deleteFunction(id)}>Remove from Favorites</button>
         </div>
     
     );

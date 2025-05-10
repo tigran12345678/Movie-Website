@@ -1,7 +1,9 @@
-  import { useEffect, useState } from "react";
-  import FavoritesPage from "../favoritesPage/FavoritesPage";
+  import { useEffect, useState, useContext, createContext } from "react";
+
   import Movie from "./Movie";
   import PopularMovies from "./PopularMovies";
+
+
 
   function Movies() {
     const [movies, setMovies] = useState([]);
@@ -9,21 +11,29 @@
     const [savedMovies, setSavedMovies] = useState([]);
     const isSearching = userInput.trim().length > 0;
 
+
     function saveMovie(id:number){
         const movieToSave = movies.find((movie) => movie.id === id);
-        setSavedMovies([...savedMovies, movieToSave]);
-    }
+        if(!movieToSave){
+          return;
+        }
+        setSavedMovies((prev) => {
+          if(prev.some((movie) => movie.id === id)){
+            return;
+          }
 
+          else{
+            return [...prev, movieToSave];
+          }
+        
+        })
+        
+  }
     useEffect(() => {
       if(savedMovies.length > 0){
         alert("Movie Saved");
         localStorage.setItem("favorites", JSON.stringify(savedMovies));
-        
       }
-      else{
-        
-      }
-
     }, [savedMovies])
 
     
@@ -41,16 +51,15 @@
     }, [userInput]);
     
 
-
-
-    console.log(movies);
     return (
-      <div className="Movies">
-
+      <>
+        <div>
         <input type="text" value = {userInput} onChange={(e) => setUserInput(e.target.value)} placeholder="What movie are you looking for" />
+        </div>
+       
         <br />
 
-
+        <div className="Movies">
         {isSearching ? movies.map((movie) => (
           <Movie
             key={movie.id}
@@ -62,7 +71,8 @@
             saveFunction={saveMovie}
           />
         )): (<PopularMovies />)}
-      </div>
+        </div>
+      </>
     );
   }
 

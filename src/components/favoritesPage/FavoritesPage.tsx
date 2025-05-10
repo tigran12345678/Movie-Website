@@ -1,14 +1,21 @@
 import DrawFavoriteMovie from "./DrawFavoriteMovie";
-
+import { useEffect, useState } from "react";
 
 
 function FavoritesPage(){
 
+    
+
     const raw = localStorage.getItem("favorites");
-    const movies =  JSON.parse(raw);
-    console.log(typeof movies);
+    const moviesFromLocalStorage =  JSON.parse(raw);
+    const [movies, setMovies] = useState(moviesFromLocalStorage);
+    useEffect(() => {
+        setMovies(JSON.parse(raw))
+    }, [])
 
-
+    function deleteFromFavorites(id){
+        setMovies(movies.filter((movie) => movie.id !== id));
+    }
 
     return(
         <div className="Favorites">
@@ -19,12 +26,10 @@ function FavoritesPage(){
                 title = {movie.original_title}
                 poster = {`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                 yearOfRelease = {movie.release_date}
-                
+                id = {movie.id}
+                deleteFunction = {deleteFromFavorites}
                 />
-                   {/* <img src= {`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt="Movie Poster" />
-                   <p>{movie.original_title}</p>
-                   <p>{movie.release_date}</p>  
-                     */}
+        
             </div>
         ))}
         </div>
