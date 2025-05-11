@@ -8,13 +8,17 @@ function FavoritesPage(){
 
     const raw = localStorage.getItem("favorites");
     const moviesFromLocalStorage =  JSON.parse(raw);
-    const [movies, setMovies] = useState(moviesFromLocalStorage);
+    const [movies, setMovies] = useState(moviesFromLocalStorage || []);
+
+    console.log(movies)
+
+
     useEffect(() => {
-        setMovies(JSON.parse(raw))
-    }, [])
+        localStorage.setItem("favorites", JSON.stringify(movies));
+    }, [movies])
 
     function deleteFromFavorites(id){
-        setMovies(movies.filter((movie) => movie.id !== id));
+        setMovies(movies.filter((movie) => movie.id !== id)); 
     }
 
     return(

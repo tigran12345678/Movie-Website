@@ -6,17 +6,19 @@ function PopularMovies(){
 
     const [popularMovies, setPopularMovies] = useState([]);
 
-    useEffect(() => {
-        const API_KEY = "3e2bc978b19b61c296bbfd833ff9ecd5";
-        fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-          )
-          .then((res) => res.json())
-          .then((data) => {
-            setPopularMovies(data.results || []);
-          })
-          .catch((err) => console.error(err));
-      }, []);
+    
+    
+    // useEffect(() => {
+    //     const API_KEY = "3e2bc978b19b61c296bbfd833ff9ecd5";
+    //     fetch(
+    //       `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+    //       )
+    //       .then((res) => res.json())
+    //       .then((data) => {
+    //         setPopularMovies(data.results || []);
+    //       })
+    //       .catch((err) => console.error(err));
+    //   }, []);
       
 
 

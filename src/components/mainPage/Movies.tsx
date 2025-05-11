@@ -1,5 +1,5 @@
   import { useEffect, useState, useContext, createContext } from "react";
-
+  import useFetch from "../../customHooks/useFetch";
   import Movie from "./Movie";
   import PopularMovies from "./PopularMovies";
 
@@ -9,8 +9,8 @@
     const [movies, setMovies] = useState([]);
     const [userInput, setUserInput] = useState("");
     const [savedMovies, setSavedMovies] = useState([]);
-    const isSearching = userInput.trim().length > 0;
-
+    
+    //const isSearching = userInput.trim().length > 0;
 
     function saveMovie(id:number){
         const movieToSave = movies.find((movie) => movie.id === id);
@@ -37,19 +37,12 @@
     }, [savedMovies])
 
     
+    const newMovies = useFetch(userInput);
 
     useEffect(() => {
-      const API_KEY = "3e2bc978b19b61c296bbfd833ff9ecd5";
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${userInput}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setMovies(data.results || []);
-        })
-        .catch((err) => console.error(err));
-    }, [userInput]);
-    
+      setMovies(newMovies);
+    })
+
 
     return (
       <>
@@ -60,7 +53,7 @@
         <br />
 
         <div className="Movies">
-        {isSearching ? movies.map((movie) => (
+        { movies.map((movie) => (
           <Movie
             key={movie.id}
             id = {movie.id}
@@ -70,7 +63,7 @@
             type={movie.title}
             saveFunction={saveMovie}
           />
-        )): (<PopularMovies />)}
+        ))}
         </div>
       </>
     );
